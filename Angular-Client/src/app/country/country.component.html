@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-4">
+        <h2>All Countries in {{datas.name}}</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of datas.clubs; let i = index">
+              <th scope="row">{{i+1}}</th>
+              <td [routerLink]="['/Clubs', data.id]">{{data.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
