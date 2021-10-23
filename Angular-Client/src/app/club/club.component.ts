@@ -10,7 +10,7 @@ import { FootballService } from '../service/football.service';
 })
 export class ClubComponent implements OnInit {
   name: string = '';
-  data: Club = {} as Club;
+  club: Club = {} as Club;
   constructor(
     private route: ActivatedRoute,
     private footballSer: FootballService
@@ -20,7 +20,7 @@ export class ClubComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.name = params.get('id')!;
       this.footballSer.fetchClubById(this.name).subscribe((res: Club) => {
-        this.data = res;
+        this.club = res;
       });
     });
   }

@@ -9,6 +9,12 @@ let Continent = new Schema({
       ref: "Country",
     },
   ],
+  clubs: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Club",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Continent", Continent);

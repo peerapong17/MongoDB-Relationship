@@ -1,4 +1,4 @@
-import { Continent } from './../models/response';
+import { Continent, DataResponse } from './../models/response';
 import { FootballService } from './../service/football.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -10,19 +10,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FootballComponent implements OnInit {
   name: string = '';
-  datas: Continent[] = [];
+  datas: any[] = [];
   constructor(
     private route: ActivatedRoute,
-    private footballSer: FootballService
+    private footballService: FootballService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.name = params.get('type')!;
-      this.footballSer.fetchData(this.name).subscribe((res: Continent[]) => {
-        this.datas = res;
-      });
+        this.footballService.fetchDatas(this.name).subscribe((res)=>{
+          this.datas = res
+          console.log(res)
+        }, (err)=>{
+          console.log(err)
+        })
     });
-    
   }
 }

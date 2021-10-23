@@ -10,7 +10,7 @@ import { FootballService } from '../service/football.service';
 })
 export class ContinentComponent implements OnInit {
   name: string = '';
-  datas: Continent = {} as Continent;
+  continent: Continent = {} as Continent;
   constructor(
     private route: ActivatedRoute,
     private footballSer: FootballService
@@ -20,7 +20,7 @@ export class ContinentComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.name = params.get('id')!;
       this.footballSer.fetchContinentById(this.name).subscribe((res: Continent) => {
-        this.datas = res;
+        this.continent = res;
       });
     });
   }

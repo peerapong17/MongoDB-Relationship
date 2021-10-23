@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  types: string[] = ["Continents", "Countries", "Clubs"]
+  types: string[] = ["Continents", "Countries", "Clubs", "Players"]
 }

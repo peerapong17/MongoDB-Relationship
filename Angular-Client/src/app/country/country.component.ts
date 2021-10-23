@@ -9,8 +9,8 @@ import { FootballService } from '../service/football.service';
   styleUrls: ['./country.component.css'],
 })
 export class CountryComponent implements OnInit {
-  name: string = '';
-  datas: Country = {} as Country;
+  Id: string = '';
+  country: Country = {} as Country;
   constructor(
     private route: ActivatedRoute,
     private footballSer: FootballService
@@ -18,9 +18,9 @@ export class CountryComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.name = params.get('id')!;
-      this.footballSer.fetchCountryById(this.name).subscribe((res: Country) => {
-        this.datas = res;
+      this.Id = params.get('id')!;
+      this.footballSer.fetchCountryById(this.Id).subscribe((res: Country) => {
+        this.country = res;
       });
     });
   }

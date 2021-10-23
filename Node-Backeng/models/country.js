@@ -13,6 +13,12 @@ let Country = new Schema({
       ref: "Club",
     },
   ],
+  players: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Player",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Country", Country);

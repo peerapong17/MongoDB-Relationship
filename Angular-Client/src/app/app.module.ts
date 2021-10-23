@@ -12,6 +12,8 @@ import { ClubComponent } from './club/club.component';
 import { CreateCountryComponent } from './create-country/create-country.component';
 import { CreateClubComponent } from './create-club/create-club.component';
 import { FormsModule } from '@angular/forms';
+import { CreatePlayerComponent } from './create-player/create-player.component';
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { FormsModule } from '@angular/forms';
     ClubComponent,
     CreateCountryComponent,
     CreateClubComponent,
+    CreatePlayerComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,

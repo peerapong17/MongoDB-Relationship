@@ -11,16 +11,24 @@ export class CreateCountryComponent implements OnInit {
   continents: Continent[] = [];
   country: string = '';
   continent: string = 'Continent';
-  constructor(private footballSer: FootballService) {}
+  constructor(private footballService: FootballService) {}
 
   ngOnInit(): void {
-    this.footballSer.fetchData('Continents').subscribe((res) => {
+    this.footballService.fetchAllContinents().subscribe((res) => {
       this.continents = res;
     });
   }
 
   onClick() {
-    this.footballSer.createCountry(this.continent, this.country).subscribe(
+    const inputForm: {
+      continent: string;
+      name: string;
+    } = {
+      name: this.country,
+      continent: this.continent,
+    };
+
+    this.footballService.createCountry(inputForm).subscribe(
       (res) => {
         console.log(res);
       },

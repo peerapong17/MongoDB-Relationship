@@ -1,3 +1,5 @@
+import { PlayerComponent } from './player/player.component';
+import { CreatePlayerComponent } from './create-player/create-player.component';
 import { CreateClubComponent } from './create-club/create-club.component';
 import { CreateCountryComponent } from './create-country/create-country.component';
 import { ClubComponent } from './club/club.component';
@@ -30,12 +32,20 @@ const routes: Routes = [
     component: ClubComponent,
   },
   {
+    path: "Players/:id",
+    component: PlayerComponent,
+  },
+  {
     path: "CreateCountry",
     component: CreateCountryComponent,
   },
   {
     path: "CreateClub",
     component: CreateClubComponent,
+  },
+  {
+    path: "CreatePlayer",
+    component: CreatePlayerComponent,
   }
 ];
 

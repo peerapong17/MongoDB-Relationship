@@ -7,17 +7,34 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav w-100">
-        <li class="nav-item" *ngFor="let type of types">
-          <a class="nav-link" routerLink="/football/{{type}}">{{type}}</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Category
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let type of types">
+              <a class="dropdown-item" routerLink="/football/{{type}}">{{type}}</a>
+            </li>
+          </ul>
         </li>
-        <div class="ms-auto d-flex">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/CreateCountry']">Create Country</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/CreateClub']">Create Club</a>
-          </li>
-        </div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Create
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" [routerLink]="['/CreateCountry']">Country</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/CreateClub']">Club</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/CreatePlayer']">Player</a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
