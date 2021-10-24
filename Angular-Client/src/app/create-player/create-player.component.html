@@ -4,22 +4,33 @@
             <h3 class="mb-4">Create Player</h3>
             <form>
                 <div class="mb-3">
-                    <label for="country" class="form-label">Player</label>
-                    <input class="form-control" id="country" [(ngModel)]="player" name="player">
+                    <label for="player" class="form-label">Player</label>
+                    <input class="form-control" id="player" [(ngModel)]="player" name="player">
                 </div>
-                
-                <select class="form-select mb-3" [(ngModel)]="country" name="country">
+
+                <label for="country" class="form-label">Country</label>
+                <select class="form-select mb-3" id="country" [(ngModel)]="country" name="country">
                     <option disabled>Country</option>
                     <option *ngFor="let data of countries" [value]="data.id">{{data.name}}</option>
                 </select>
 
-                <select class="form-select mb-3" [(ngModel)]="club" name="club">
+                <label for="club" class="form-label">Club</label>
+                <select class="form-select mb-3" id="club" [(ngModel)]="club" name="club">
                     <option disabled>Club</option>
                     <option *ngFor="let data of clubs" [value]="data.id">{{data.name}}</option>
                 </select>
 
-                
-                <button (click)="onClick()" class="btn btn-primary float-end">Create</button>
+                <label for="positions" class="form-label">Positions</label>
+                <div class="clearfix"></div>
+                <div class="form-check form-check-inline" *ngFor="let item of positions">
+                    <input [ngModelOptions]="{standalone: true}" [checked]="item.isChecked" class="form-check-input" type="checkbox" id="{{item.id}}" [(ngModel)]="item.isChecked">
+                    <label class="form-check-label" for="{{item.id}}">
+                        {{item.name}}
+                    </label>
+                </div>
+                <div class="clearfix mb-5"></div>
+
+                <button (click)="onClick()" class="btn btn-primary float-end w-50">Create</button>
             </form>
         </div>
     </div>

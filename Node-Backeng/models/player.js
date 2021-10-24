@@ -11,6 +11,12 @@ let Player = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Club",
   },
+  positions: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Position",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Player", Player);

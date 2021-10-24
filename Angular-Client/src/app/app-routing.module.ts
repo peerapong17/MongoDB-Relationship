@@ -1,3 +1,4 @@
+import { PositionComponent } from './position/position.component';
 import { PlayerComponent } from './player/player.component';
 import { CreatePlayerComponent } from './create-player/create-player.component';
 import { CreateClubComponent } from './create-club/create-club.component';
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: "Players/:id",
     component: PlayerComponent,
+  },
+  {
+    path: "Positions/:id",
+    component: PositionComponent,
   },
   {
     path: "CreateCountry",

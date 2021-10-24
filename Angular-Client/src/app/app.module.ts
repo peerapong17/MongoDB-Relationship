@@ -14,6 +14,7 @@ import { CreateClubComponent } from './create-club/create-club.component';
 import { FormsModule } from '@angular/forms';
 import { CreatePlayerComponent } from './create-player/create-player.component';
 import { PlayerComponent } from './player/player.component';
+import { PositionComponent } from './position/position.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PlayerComponent } from './player/player.component';
     CreateClubComponent,
     CreatePlayerComponent,
     PlayerComponent,
+    PositionComponent,
   ],
   imports: [
     BrowserModule,

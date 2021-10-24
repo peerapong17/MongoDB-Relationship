@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row justify-content-center mt-3">
+      <div class="col-4">
+        <h2 class="my-3">All Players can play {{position.name}}</h2>
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of position.players; let i = index">
+              <th scope="row">{{i+1}}</th>
+              <td [routerLink]="['/Players', item.id]">{{item.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

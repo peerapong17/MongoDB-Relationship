@@ -24,8 +24,16 @@ export interface Club {
 }
 
 export interface Player {
-  id: String;
-  name: String;
+  id: string;
+  name: string;
   country: Country;
   club: Club;
+  positions: Position[]
+  isChecked: boolean
+}
+
+export interface Position {
+  id: string;
+  name: string;
+  players: Player[]
 }
