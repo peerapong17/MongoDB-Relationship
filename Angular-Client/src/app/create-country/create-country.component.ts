@@ -1,6 +1,7 @@
-import { Continent } from './../models/response';
+import { Continent, Country } from './../models/response';
 import { FootballService } from './../service/football.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-country',
@@ -9,17 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateCountryComponent implements OnInit {
   continents: Continent[] = [];
+  id: string = '';
   country: string = '';
   continent: string = 'Continent';
-  constructor(private footballService: FootballService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private footballService: FootballService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.footballService.fetchAllContinents().subscribe((res) => {
       this.continents = res;
     });
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id')!;
+      this.footballService
+        .fetchCountryById(this.id)
+        .subscribe((res: Country) => {
+          this.continent = res.continent.name;
+          this.country = res.name;
+        });
+    });
   }
 
   onClick() {
+    console.log('d')
     const inputForm: {
       continent: string;
       name: string;
@@ -28,13 +44,26 @@ export class CreateCountryComponent implements OnInit {
       continent: this.continent,
     };
 
-    this.footballService.createCountry(inputForm).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    if (this.id) {
+      this.footballService.updateCountry(this.id, inputForm).subscribe(
+        (res) => {
+          console.log(res);
+          this.router.navigate(['/football/Countries'])
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } else {
+      this.footballService.createCountry(inputForm).subscribe(
+        (res) => {
+          console.log(res);
+          this.router.navigate(['/football/Countries'])
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
   }
 }

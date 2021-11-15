@@ -1,3 +1,5 @@
+import { CreatePositionComponent } from './create-position/create-position.component';
+import { CreateContinentComponent } from './create-continent/create-continent.component';
 import { PositionComponent } from './position/position.component';
 import { PlayerComponent } from './player/player.component';
 import { CreatePlayerComponent } from './create-player/create-player.component';
@@ -13,49 +15,77 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: "",
-    component: HomeComponent
+    path: '',
+    component: HomeComponent,
   },
   {
-    path: "football/:type",
+    path: 'football/:type',
     component: FootballComponent,
   },
   {
-    path: "Continents/:id",
+    path: 'Continents/:id',
     component: ContinentComponent,
   },
   {
-    path: "Countries/:id",
+    path: 'Countries/:id',
     component: CountryComponent,
   },
   {
-    path: "Clubs/:id",
+    path: 'Clubs/:id',
     component: ClubComponent,
   },
   {
-    path: "Players/:id",
+    path: 'Players/:id',
     component: PlayerComponent,
   },
   {
-    path: "Positions/:id",
+    path: 'Positions/:id',
     component: PositionComponent,
   },
   {
-    path: "CreateCountry",
+    path: 'CreateContinent',
+    component: CreateContinentComponent,
+  },
+  {
+    path: 'Continents/update/:id',
+    component: CreateContinentComponent,
+  },
+  {
+    path: 'CreateCountry',
     component: CreateCountryComponent,
   },
   {
-    path: "CreateClub",
+    path: 'Countries/update/:id',
+    component: CreateCountryComponent,
+  },
+  {
+    path: 'CreateClub',
     component: CreateClubComponent,
   },
   {
-    path: "CreatePlayer",
+    path: 'Clubs/update/:id',
+    component: CreateClubComponent,
+  },
+  {
+    path: 'CreatePlayer',
     component: CreatePlayerComponent,
-  }
+  },
+  {
+    path: 'Players/update/:id',
+    component: CreatePlayerComponent,
+  },
+  {
+    path: 'CreatePosition',
+    component: CreatePositionComponent,
+  },
+  {
+    path: 'Positions/update/:id',
+    component: CreatePositionComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

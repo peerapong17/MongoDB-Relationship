@@ -1,19 +1,34 @@
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-4">
-            <h3 class="mb-4">Create Country</h3>
-            <form>
-                <div class="mb-3">
-                    <label for="country" class="form-label">Country</label>
-                    <input class="form-control" id="country" [(ngModel)]="country" name="country">
-                </div>
-                <select class="form-select mb-3" [(ngModel)]="continent" name="continent">
-                    <option disabled>Continent</option>
-                    <option *ngFor="let data of continents" [value]="data.id">{{data.name}}</option>
-                </select>
-                
-                <button (click)="onClick()" class="btn btn-primary float-end">Create</button>
-            </form>
+            <div *ngIf="id;else elseBlock">
+                <h3 class="mb-4">Update Country</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country</label>
+                        <input class="form-control" id="country" [(ngModel)]="country" name="country">
+                    </div>
+                    <select class="form-select mb-3" [(ngModel)]="continent" name="continent">
+                        <option disabled>Continent</option>
+                        <option *ngFor="let data of continents" [value]="data.id">{{data.name}}</option>
+                    </select>
+                    <button (click)="onClick()" class="btn btn-primary float-end">Update</button>
+                </form>
+            </div>
+            <ng-template #elseBlock>
+                <h3 class="mb-4">Create Country</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country</label>
+                        <input class="form-control" id="country" [(ngModel)]="country" name="country">
+                    </div>
+                    <select class="form-select mb-3" [(ngModel)]="continent" name="continent">
+                        <option disabled>Continent</option>
+                        <option *ngFor="let data of continents" [value]="data.id">{{data.name}}</option>
+                    </select>
+                    <button (click)="onClick()" class="btn btn-success float-end">Create</button>
+                </form>
+            </ng-template>
         </div>
     </div>
 </div>

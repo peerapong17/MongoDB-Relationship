@@ -7,7 +7,7 @@ let Club = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Continent",
   },
-  countries: {
+  country: {
     type: Schema.Types.ObjectId,
     ref: "Country",
   },

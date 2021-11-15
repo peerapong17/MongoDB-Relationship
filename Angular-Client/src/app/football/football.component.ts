@@ -19,12 +19,79 @@ export class FootballComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.name = params.get('type')!;
-        this.footballService.fetchDatas(this.name).subscribe((res)=>{
-          this.datas = res
-          console.log(res)
-        }, (err)=>{
-          console.log(err)
-        })
+      this.footballService.fetchDatas(this.name).subscribe(
+        (res) => {
+          this.datas = res;
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
     });
+  }
+
+  delete(type: string, id: string) {
+    console.log(id)
+    console.log(type)
+    switch (type) {
+      case 'Continents':
+        this.footballService.deleteContinent(id).subscribe(
+          (res) => {
+            console.log(res);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+        break;
+
+      case 'Countries':
+        this.footballService.deleteCountry(id).subscribe(
+          (res) => {
+            console.log(res);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+        break;
+
+      case 'Clubs':
+        this.footballService.deleteClub(id).subscribe(
+          (res) => {
+            console.log(res);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+        break;
+
+      case 'Players':
+        this.footballService.deletePlayer(id).subscribe(
+          (res) => {
+            console.log(res);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+        break;
+
+      case 'Positions':
+        this.footballService.deletePosition(id).subscribe(
+          (res) => {
+            console.log(res);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+        break;
+
+      default:
+        break;
+    }
   }
 }

@@ -1,8 +1,8 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Position, Player } from './../models/response';
 import { Component, OnInit } from '@angular/core';
 import { Club, Country, DataResponse } from '../models/response';
 import { FootballService } from '../service/football.service';
-import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
 @Component({
   selector: 'app-create-player',
@@ -10,6 +10,7 @@ import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
   styleUrls: ['./create-player.component.css'],
 })
 export class CreatePlayerComponent implements OnInit {
+  id: string = '';
   player: string = '';
   club: string = 'Club';
   country: string = 'Country';
@@ -17,9 +18,21 @@ export class CreatePlayerComponent implements OnInit {
   countries: Country[] = [];
   positions: { id: string; name: string; isChecked: boolean }[] = [];
 
-  constructor(private footballService: FootballService) {}
+  constructor(
+    private footballService: FootballService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id')!;
+      this.footballService.fetchPlayerById(this.id).subscribe((res: Player) => {
+        this.player = res.name;
+        this.club = res.club.name;
+        this.country = res.country.name;
+      });
+    });
     this.footballService.fetchAllCountries().subscribe((res) => {
       this.countries = res;
     });
@@ -58,16 +71,23 @@ export class CreatePlayerComponent implements OnInit {
       positions: this.fetchSelectedItems(),
     };
 
-    this.footballService.createPlayer(inputForm).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
-    );
+    if (this.id) {
+      this.footballService.updatePlayer(this.id, inputForm).subscribe(
+        (res) => console.log(res),
+        (err) => console.log(err)
+      );
+    } else {
+      this.footballService.createPlayer(inputForm).subscribe(
+        (res) => console.log(res),
+        (err) => console.log(err)
+      );
+    }
 
-    this.player = '';
-    this.club = 'Club';
-    this.country = 'Country';
-    this.positions = this.positions.map((position) => {
-      return { ...position, isChecked: false };
-    });
+    // this.player = '';
+    // this.club = 'Club';
+    // this.country = 'Country';
+    // this.positions = this.positions.map((position) => {
+    //   return { ...position, isChecked: false };
+    // });
   }
 }

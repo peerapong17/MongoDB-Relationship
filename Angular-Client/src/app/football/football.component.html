@@ -7,6 +7,7 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Name</th>
+            <th scope="col">Changes</th>
           </tr>
         </thead>
         <tbody>
@@ -15,6 +16,14 @@
             <!-- <td [routerLink]="['/continents', data.id]">{{data.name}}</td> -->
 
             <td routerLink="/{{name}}/{{data.id}}">{{data.name}}</td>
+            <td>
+              <button class="btn btn-primary mx-1">
+                <i routerLink="/{{name}}/update/{{data.id}}" class="fas fa-pen-alt"></i>
+              </button>
+              <button (click)="delete(name, data.id)" class="btn btn-danger mx-1">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

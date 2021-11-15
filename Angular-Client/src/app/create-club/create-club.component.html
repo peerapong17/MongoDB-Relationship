@@ -1,26 +1,50 @@
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-4">
-            <h3 class="mb-4">Create Football Club</h3>
-            <form>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input class="form-control" id="name" [(ngModel)]="name" name="name">
-                </div>
+            <div *ngIf="id;else elseBlock">
+                <h3 class="mb-4">Update Football Club</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input class="form-control" id="name" [(ngModel)]="name" name="name">
+                    </div>
 
-                <select class="form-select mb-3" [(ngModel)]="continent" name="continent">
-                    <option disabled>Continent</option>
-                    <option *ngFor="let data of continents" [value]="data.id">{{data.name}}</option>
-                </select>
+                    <select class="form-select mb-3" [(ngModel)]="continent" name="continent">
+                        <option disabled>Continent</option>
+                        <option *ngFor="let data of continents" [value]="data.id">{{data.name}}</option>
+                    </select>
 
-                <select class="form-select mb-3" [(ngModel)]="country" name="country">
-                    <option disabled>Country</option>
-                    <option *ngFor="let data of countries" [value]="data.id">{{data.name}}</option>
-                </select>
+                    <select class="form-select mb-3" [(ngModel)]="country" name="country">
+                        <option disabled>Country</option>
+                        <option *ngFor="let data of countries" [value]="data.id">{{data.name}}</option>
+                    </select>
 
 
-                <button (click)="onClick()" class="btn btn-primary float-end">Create</button>
-            </form>
+                    <button (click)="onClick()" class="btn btn-success float-end">Update</button>
+                </form>
+            </div>
+            <ng-template #elseBlock>
+                <h3 class="mb-4">Create Football Club</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input class="form-control" id="name" [(ngModel)]="name" name="name">
+                    </div>
+
+                    <select class="form-select mb-3" [(ngModel)]="continent" name="continent">
+                        <option disabled>Continent</option>
+                        <option *ngFor="let data of continents" [value]="data.id">{{data.name}}</option>
+                    </select>
+
+                    <select class="form-select mb-3" [(ngModel)]="country" name="country">
+                        <option disabled>Country</option>
+                        <option *ngFor="let data of countries" [value]="data.id">{{data.name}}</option>
+                    </select>
+
+
+                    <button (click)="onClick()" class="btn btn-success float-end">Create</button>
+                </form>
+            </ng-template>
         </div>
     </div>
 </div>

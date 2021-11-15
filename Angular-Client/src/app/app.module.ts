@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { CreatePlayerComponent } from './create-player/create-player.component';
 import { PlayerComponent } from './player/player.component';
 import { PositionComponent } from './position/position.component';
+import { CreateContinentComponent } from './create-continent/create-continent.component';
+import { CreatePositionComponent } from './create-position/create-position.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { PositionComponent } from './position/position.component';
     CreatePlayerComponent,
     PlayerComponent,
     PositionComponent,
+    CreateContinentComponent,
+    CreatePositionComponent,
   ],
   imports: [
     BrowserModule,

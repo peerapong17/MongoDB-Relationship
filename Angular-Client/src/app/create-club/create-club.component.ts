@@ -1,4 +1,5 @@
-import { Continent, Country } from './../models/response';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Continent, Country, Club } from './../models/response';
 import { FootballService } from './../service/football.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,14 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-club.component.css'],
 })
 export class CreateClubComponent implements OnInit {
+  id: string = '';
   name: string = '';
   country: string = 'Country';
   continent: string = 'Continent';
   countries: Country[] = [];
   continents: Continent[] = [];
-  constructor(private footballService: FootballService) {}
+  constructor(
+    private footballService: FootballService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id')!;
+      this.footballService.fetchClubById(this.id).subscribe((res: Club) => {
+        this.name = res.name;
+        this.country = res.country.name;
+        this.continent = res.continent.name;
+      });
+    });
     this.footballService.fetchAllCountries().subscribe((res) => {
       this.countries = res;
     });
@@ -35,13 +49,26 @@ export class CreateClubComponent implements OnInit {
       country: this.country,
     };
 
-    this.footballService.createClub(inputForm).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    if (this.id) {
+      this.footballService.updateClub(this.id, inputForm).subscribe(
+        (res) => {
+          console.log(res);
+          this.router.navigate(['/football/Clubs']);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } else {
+      this.footballService.createClub(inputForm).subscribe(
+        (res) => {
+          console.log(res);
+          this.router.navigate(['/football/Clubs']);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
   }
 }

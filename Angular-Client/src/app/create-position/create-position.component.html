@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-4">
+            <div *ngIf="id;else elseBlock">
+                <h3 class="mb-4">Update Position</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Position</label>
+                        <input class="form-control" id="country" [(ngModel)]="position" name="position">
+                    </div>
+
+                    <button (click)="onClick()" class="btn btn-primary float-end">Update</button>
+                </form>
+            </div>
+            <ng-template #elseBlock>
+                <h3 class="mb-4">Create Position</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Position</label>
+                        <input class="form-control" id="country" [(ngModel)]="position" name="position">
+                    </div>
+
+                    <button (click)="onClick()" class="btn btn-success float-end">Create</button>
+                </form>
+            </ng-template>
+        </div>
+    </div>
+</div>
